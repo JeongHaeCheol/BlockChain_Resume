@@ -42,7 +42,7 @@ class SendEvent {
 
         	this.CONNECTION_PROFILE_NAME = 'hlfv1';
 
-        	this.businessNetworkIdentifier = 'resume';
+        	this.businessNetworkIdentifier = 'resumedevelop';
     	}
 
 
@@ -77,7 +77,7 @@ class SendEvent {
 
      	listen(){
 
-       		this.networkConnection.on('CreateEvent',(evt)=>{
+       		this.networkConnection.on('SendEvent',(evt)=>{
 
          		console.log(evt);
 
