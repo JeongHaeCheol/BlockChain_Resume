@@ -30,76 +30,55 @@
 
 
 const BusinessNetworkConnection = require('composer-client').BusinessNetworkConnection;
-let participantId = 'admin';
-let participantPwd = 'adminpw';
+const winston = require('winston');
+var chalk = require('chalk');
+let config = require('config').get('event-app');
+let participantId = config.get('participantId');
+let participantPwd = config.get('participantPwd');
+const LOG = winston.loggers.get('application');
 
-class SendEvent {
 
+class SitechainListener{
 
 	constructor() {
 
-        	this.networkConnection = new BusinessNetworkConnection();
-
-        	this.CONNECTION_PROFILE_NAME = 'hlfv1';
-
-        	this.businessNetworkIdentifier = 'resumedevelop';
+        	this.NetworkConnection = new BusinessNetworkConnection();
+        	this.CONNECTION_PROFILE_NAME = "admin@resumedevelop";
+        	this.businessNetworkIdentifier = config.get('businessNetworkIdentifier');
     	}
 
 
 	init() {
 
-        	return this.networkConnection.connect(this.CONNECTION_PROFILE_NAME, this.businessNetworkIdentifier, participantId, participantPwd)
-
+        	return this.NetworkConnection.connect(this.CONNECTION_PROFILE_NAME)
       		.then((result) => {
-
           		this.businessNetworkDefinition = result;
-
           		//LOG.info(this.businessNetworkDefinition.getIdentifier());
-
       		})
-
       		// and catch any exceptions that are triggered
-
       		.catch(function (error) {
-
           		throw error;
-
       		});
-
-
 
     	}
 
 
 	/** Listen for the sale transaction events
-
      	*/
-
      	listen(){
-
-       		this.networkConnection.on('SendEvent',(evt)=>{
-
+       		this.NetworkConnection.on('event',(evt)=>{
          		console.log(evt);
-
-
+         		let options = {
+           			properties: { key:'value'}
+         	};
        });
-
      }
-
-
-
 
 
 }
 
 
 
-
-
-
-
 var lnr = new SitechainListener();
-
 lnr.init();
-
 lnr.listen()
