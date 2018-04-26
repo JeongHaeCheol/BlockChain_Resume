@@ -6,10 +6,9 @@ import hansung.ac.kr.participants.*
 
 asset ResumeInfoUser identified by assetId {
     o String assetId
-    --> Enterprise affiliatedEnt optional
     o DateTime dob
     o String supportField
-    o String salaryRequirement optional
+    o String salaryRequirement regex=/[1-9][0-9]{2,}/ optional
     o String majorActivities optional
     o String socialExperience optional
     o String skillsAndCapabilities optional
@@ -22,8 +21,9 @@ asset ResumeInfoUser identified by assetId {
 
 
 asset Certificate identified by assetId {
-    o String assetId
+    o String assetId 
     o String ownerId
+    o String parentResumeId
     o String certificateName
     o Integer certificateScore default=0 range=[0,] optional
 	--> Organization issuingOrg
@@ -36,18 +36,20 @@ asset Certificate identified by assetId {
 asset AwardDetails identified by assetId {
    o String assetId
    o String ownerId
+   o String parentResumeId
    o String contestName
    --> Organization issuingOrg
    o String organizationName
    o DateTime dateOfAward
    o DateTime transactionTime
-   o String awardGrade optional
+   o String awardGrade optional 
    o String description optional
 }
 
 asset UserInfoInEnt identified by assetId {
     o String assetId
     o String ownerId
+    o String parentResumeId
     --> Enterprise issuingEnt
     o String enterpriseName
 	o String userPosition
@@ -60,6 +62,7 @@ asset UserInfoInEnt identified by assetId {
 asset UserInfoInSch identified by assetId {
     o String assetId
     o String ownerId
+    o String parentResumeId
     --> School issuingSch
     o String schoolName
   	o DateTime entranceDate

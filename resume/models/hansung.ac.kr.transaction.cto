@@ -53,7 +53,6 @@ transaction RevokeAuthorizedSch extends TxForSch {
 }
 
 transaction CreateResumeInfoUser extends TxForUser {
-    --> Enterprise affiliatedEnt optional
     o DateTime dob
     o String supportField
     o String salaryRequirement optional
@@ -71,7 +70,6 @@ transaction CreateResumeElement extends TxForUser{
 }
 
 transaction UpdateResumeInfoUser extends TxForUser {
-    --> Enterprise affiliatedEnt optional
     o DateTime dob optional
     o String supportField optional
     o String salaryRequirement optional
@@ -107,6 +105,8 @@ transaction selectMyUserInfoInEnt {
 transaction selectMyUserInfoInSch {
 }
 transaction selectUserByCertificateName {
+    o String certificateName
+
 }
 
 event SendEvent {

@@ -249,9 +249,7 @@ function createAsset(type, tx, me, registry, _targetResumeAsset) {
 
     switch(type) {
         case "certificate":
-             console.log("전");
              tResumeAsset = _targetResumeAsset.certificateList;
-             console.log("후");
              paramItem = tx.certificate;
         	 registry.exists(paramItem.getIdentifier() )
              .then(function (result) {
@@ -292,6 +290,7 @@ function createAsset(type, tx, me, registry, _targetResumeAsset) {
        else {
 
        paramItem.ownerId = me.getIdentifier();
+       paramItem.parentResumeId = _targetResumeAsset.getIdentifier();
        registry.add(paramItem);
        console.log(paramItem);
          switch(type) {
@@ -321,18 +320,21 @@ function createAsset(type, tx, me, registry, _targetResumeAsset) {
  * @transaction
  */
 function selectUserByCertificateName (tx) {
-  var id = null;
+  var idList = [];
 
   // 선택된 결과가 많아질경우 이코드는 문제가 있음 수정필요
-  query("selectCertificateByName" , {targetName: "TOEIC" })
+  query("selectCertificateByName" , {targetName: tx.certificateName })
   .then(function (certificateList) {
      certificateList.forEach(function (certificate) {
-     id = certificate.ownerId ;
-     console.log(id);
+     idList.push(certificate.ownerId);
      })
-     return query("selectUserById" , {targetId: id })
-  }).then(function (selectedUser) {
-    console.log(selectedUser);
+  }).then(function () {
+     idList.forEach(function (id) {
+        query("selectUserById" , {targetId: id })
+        .then(function (userList){
+         console.log(userList); 
+        });
+     })
   });
 
 }
@@ -416,7 +418,6 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
 
        var newResumeAsset = factory.newResource(NAMESAPCE_ASSETS, RESUME, "ResumeAsset#" + me.getIdentifier() );
 
-       newResumeAsset.affiliatedEnt = txCreateResumeInfoUser.affiliatedEnt;
        newResumeAsset.dob = txCreateResumeInfoUser.dob;
        newResumeAsset.supportField = txCreateResumeInfoUser.supportField;
        newResumeAsset.salaryRequirement  = txCreateResumeInfoUser.salaryRequirement ;

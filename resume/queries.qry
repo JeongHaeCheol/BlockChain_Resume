@@ -5,6 +5,13 @@ query selectUserById {
       WHERE (userId == _$targetId)
 }
 
+query selectResumeById {
+  description: "Select Resume by Id"
+  statement:
+      SELECT hansung.ac.kr.assets.ResumeInfoUser
+      WHERE (assetId == _$targetId)
+}
+
 
 query selectUser {
   description: "Select all users"

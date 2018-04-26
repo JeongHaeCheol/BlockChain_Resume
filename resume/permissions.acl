@@ -22,8 +22,6 @@ rule readAssetByEnterprise{
 }
 
 
-
-
 rule selectResumeInfoUser {
     description: ""
   	participant: "hansung.ac.kr.participants.User"
