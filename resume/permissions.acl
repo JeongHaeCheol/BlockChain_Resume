@@ -5,19 +5,45 @@
  * added them to their authorized list.
  */
 
-rule selectUserByCertificateName {
+
+
+
+rule readAssetByOrganization{
     description: ""
-  	participant: "hansung.ac.kr.participants.Enterprise"
-  	operation: CREATE
-	resource: "hansung.ac.kr.transaction.selectUserByCertificateName"
+  	participant(p): "hansung.ac.kr.participants.Organization"
+  	operation: READ
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (r.publishOnOff == true)
     action: ALLOW
 }
 
 rule readAssetByEnterprise{
     description: ""
-  	participant: "hansung.ac.kr.participants.Enterprise"
+  	participant(p): "hansung.ac.kr.participants.Enterprise"
   	operation: READ
-	resource: "hansung.ac.kr.assets.**"
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (r.publishOnOff == true)
+    action: ALLOW
+}
+
+rule readAssetBySchool{
+    description: ""
+  	participant(p): "hansung.ac.kr.participants.School"
+  	operation: READ
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (r.publishOnOff == true)
+    action: ALLOW
+}
+
+
+
+/*  Query transaction rule */
+
+rule selectUserByCertificateName {
+    description: ""
+  	participant: "hansung.ac.kr.participants.**"
+  	operation: CREATE
+	resource: "hansung.ac.kr.transaction.selectUserByCertificateName"
     action: ALLOW
 }
 
@@ -65,11 +91,32 @@ rule selectMyUserInfoInSch {
 }
 
 
-rule deleteResumeElement {
+
+
+/*  Query transaction END */
+
+
+
+
+/* CRUD Reusme asset rule */
+
+
+
+rule UserFullAccessResumeAsset {
+    description: "ResumeAsset CRUD"
+  	participant(p): "hansung.ac.kr.participants.User"
+  	operation: ALL
+	resource(r): "hansung.ac.kr.assets.ResumeInfoUser"
+    condition: ( ("ResumeAsset#" + p.getIdentifier())  == r.assetId )
+    action: ALLOW
+}
+
+rule UserRUDresumeElement {
     description: ""
-  	participant: "hansung.ac.kr.participants.User"
-  	operation: CREATE
-	resource: "hansung.ac.kr.transaction.DeleteResumeElement"
+  	participant(p): "hansung.ac.kr.participants.User"
+  	operation: READ, UPDATE, DELETE
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (p.getIdentifier() == r.ownerId )
     action: ALLOW
 }
 
@@ -105,6 +152,18 @@ rule UserCreateCertificate {
 }
 
 
+/* CRUD Reusme asset END */
+
+
+
+
+
+
+
+/* CRUD Resume transaction rule */
+
+
+
 rule UserTxCreateResumeAsset {
     description: ""
   	participant: "hansung.ac.kr.participants.User"
@@ -116,67 +175,174 @@ rule UserTxCreateResumeAsset {
 rule UserTxCreateResumeElement {
     description: ""
   	participant: "hansung.ac.kr.participants.User"
-  	operation: ALL
+  	operation: CREATE
 	resource: "hansung.ac.kr.transaction.CreateResumeElement"
+    action: ALLOW
+}
+
+rule UserTxDeleteResumeElement {
+    description: ""
+  	participant: "hansung.ac.kr.participants.User"
+  	operation: CREATE
+	resource: "hansung.ac.kr.transaction.DeleteResumeElement"
     action: ALLOW
 }
 
 rule UserTxUpdateResumeAsset {
     description: ""
   	participant: "hansung.ac.kr.participants.User"
-  	operation: ALL
+  	operation: CREATE
 	resource: "hansung.ac.kr.transaction.UpdateResumeInfoUser"
     action: ALLOW
 }
 
-rule UserFullAccessResumeAsset {
+
+/* CRUD Resume transaction END */
+
+
+
+
+
+
+
+/* Owner RUD access rule */
+
+
+rule OwnRUDAccessUser {
+    description: "Allow all User full access to their own record"
+    participant(p): "hansung.ac.kr.participants.User"
+    operation: READ, UPDATE, DELETE
+    resource(r): "hansung.ac.kr.participants.User"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule OwnRUDAccessOrg {
+    description: "Allow all Org full access to their own record"
+    participant(p): "hansung.ac.kr.participants.Organization"
+    operation: READ, UPDATE, DELETE
+    resource(r): "hansung.ac.kr.participants.Organization"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule OwnRUDAccessEnt {
+    description: "Allow all Ent full access to their own record"
+    participant(p): "hansung.ac.kr.participants.Enterprise"
+    operation: READ, UPDATE, DELETE
+    resource(r): "hansung.ac.kr.participants.Enterprise"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+rule OwnRUDAccessSch {
+    description: "Allow all Sch full access to their own record"
+    participant(p): "hansung.ac.kr.participants.School"
+    operation: READ, UPDATE, DELETE
+    resource(r): "hansung.ac.kr.participants.School"
+    condition: (r.getIdentifier() === p.getIdentifier())
+    action: ALLOW
+}
+
+/* Owner RUD access rule */
+
+
+
+
+
+
+/* Pariticipants read rule */
+
+
+
+rule AnyReadOtherUser {
+    description: "Allow all participants read User"
+    participant: "ANY"
+    operation: READ
+    resource: "hansung.ac.kr.participants.User"
+    action: ALLOW
+}
+
+rule AllParticipantsReadOrg {
+    description: "Allow all participants can read all organizations"
+    participant: "ANY"
+    operation: READ
+    resource: "hansung.ac.kr.participants.Organization"
+    action: ALLOW
+}
+
+rule AllParticipantsReadEnt{
+    description: "Allow all participants can read all Enterprise"
+    participant: "ANY"
+    operation: READ
+    resource: "hansung.ac.kr.participants.Enterprise"
+    action: ALLOW
+}
+
+rule AllParticipantsReadSch{
+    description: "Allow all participants can read all School"
+    participant: "ANY"
+    operation: READ
+    resource: "hansung.ac.kr.participants.School"
+    action: ALLOW
+}
+
+
+
+
+/* Pariticipants read rule */
+
+
+
+
+
+
+/* System rule */
+
+
+rule SystemACL {
+  description:  "System ACL to permit all access"
+  participant: "org.hyperledger.composer.system.Participant"
+  operation: ALL
+  resource: "org.hyperledger.composer.system.**"
+  action: ALLOW
+}
+
+
+rule DefaultDeny {
     description: ""
-  	participant(p): "hansung.ac.kr.participants.User"
-  	operation: ALL
-	resource(r): "hansung.ac.kr.assets.**"
-    condition: ( ("ResumeAsset#" + p.getIdentifier())  == r.assetId )
-    action: ALLOW
-}
-
-rule UserRUDresumeElement {
-    description: ""
-  	participant(p): "hansung.ac.kr.participants.User"
-  	operation: READ, UPDATE, DELETE
-	resource(r): "hansung.ac.kr.assets.**"
-    condition: (p.getIdentifier() == r.ownerId )
-    action: ALLOW
+    participant: "hansung.ac.kr.participants.*"
+    operation: ALL
+    resource: "hansung.ac.kr.participants.**"
+    action: DENY
 }
 
 
-rule OrgReadUserAsset {
-  	description: ""
-  	participant(p): "hansung.ac.kr.participants.Organization"
-  	operation: READ
-	resource(r): "hansung.ac.kr.assets.**"
-    condition: (p.getIdentifier() == r.issuingOrg.getIdentifier() )
+rule NetworkAdminUser {
+    description: "Grant business network administrators full access to user resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "**"
     action: ALLOW
 }
 
-
-rule EntReadUserAsset {
-  	description: ""
-  	participant(p): "hansung.ac.kr.participants.Enterprise"
-  	operation: READ
-	resource(r): "hansung.ac.kr.assets.**"
-    condition: (p.getIdentifier() == r.issuingEnt.getIdentifier() )
+rule NetworkAdminSystem {
+    description: "Grant business network administrators full access to system resources"
+    participant: "org.hyperledger.composer.system.NetworkAdmin"
+    operation: ALL
+    resource: "org.hyperledger.composer.system.**"
     action: ALLOW
 }
 
 
-rule SchReadUserAsset {
-  	description: ""
-  	participant(p): "hansung.ac.kr.participants.School"
-  	operation: READ
-	resource(r): "hansung.ac.kr.assets.**"
-    condition: (p.getIdentifier() == r.issuingSch.getIdentifier() )
-    action: ALLOW
-}
+/* System END */
 
+
+
+
+
+
+/* Holding rule 
 
  rule addRequestUser {
      description: ""
@@ -193,7 +359,6 @@ rule SchReadUserAsset {
      resource: "hansung.ac.kr.transaction.RevokeRequestUser"
      action: ALLOW
  }
-
 
 
 
@@ -248,117 +413,36 @@ rule RevokeAuthorizedIns {
 
 
 
-rule ForigenRecordFullAccessUser {
-    description: "Allow all participants reat to other record"
-    participant: "ANY"
-    operation: READ
-    resource: "hansung.ac.kr.participants.User"
-    action: ALLOW
-}
-
-rule OwnRecordFullAccessUser {
-    description: "Allow all User full access to their own record"
-    participant(p): "hansung.ac.kr.participants.User"
-    operation: READ, UPDATE, DELETE
-    resource(r): "hansung.ac.kr.participants.User"
-    condition: (r.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}
-
-rule OwnRecordFullAccessOrg {
-    description: "Allow all Org full access to their own record"
-    participant(p): "hansung.ac.kr.participants.Organization"
-    operation: READ, UPDATE, DELETE
-    resource(r): "hansung.ac.kr.participants.Organization"
-    condition: (r.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}
-
-rule OwnRecordFullAccessEnt {
-    description: "Allow all Ent full access to their own record"
-    participant(p): "hansung.ac.kr.participants.Enterprise"
-    operation: READ, UPDATE, DELETE
-    resource(r): "hansung.ac.kr.participants.Enterprise"
-    condition: (r.getIdentifier() === p.getIdentifier())
-    action: ALLOW
-}
-
-rule OwnRecordFullAccessSch {
-    description: "Allow all Sch full access to their own record"
-    participant(p): "hansung.ac.kr.participants.School"
-    operation: READ, UPDATE, DELETE
-    resource(r): "hansung.ac.kr.participants.School"
-    condition: (r.getIdentifier() === p.getIdentifier())
+rule OrgReadUserAsset {
+  	description: ""
+  	participant(p): "hansung.ac.kr.participants.Organization"
+  	operation: READ
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (p.getIdentifier() == r.issuingOrg.getIdentifier() )
     action: ALLOW
 }
 
 
-
-rule AllParticipantsReadOrg {
-    description: "Allow all participants can read all organizations"
-    participant: "ANY"
-    operation: READ
-    resource: "hansung.ac.kr.participants.Organization"
-    action: ALLOW
-}
-
-rule AllParticipantsReadEnt{
-    description: "Allow all participants can read all Enterprise"
-    participant: "ANY"
-    operation: READ
-    resource: "hansung.ac.kr.participants.Enterprise"
-    action: ALLOW
-}
-
-rule AllParticipantsReadIns{
-    description: "Allow all participants can read all School"
-    participant: "ANY"
-    operation: READ
-    resource: "hansung.ac.kr.participants.School"
+rule EntReadUserAsset {
+  	description: ""
+  	participant(p): "hansung.ac.kr.participants.Enterprise"
+  	operation: READ
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (p.getIdentifier() == r.issuingEnt.getIdentifier() )
     action: ALLOW
 }
 
 
-
-
-
-rule SystemACL {
-  description:  "System ACL to permit all access"
-  participant: "org.hyperledger.composer.system.Participant"
-  operation: ALL
-  resource: "org.hyperledger.composer.system.**"
-  action: ALLOW
-}
-
-
-rule DefaultDeny {
-    description: ""
-    participant: "hansung.ac.kr.participants.*"
-    operation: ALL
-    resource: "hansung.ac.kr.participants.**"
-    action: DENY
-}
-
-rule DefaultDenySystem {
-    description: ""
-    participant: "ANY"
-    operation: ALL
-    resource: "org.hyperledger.composer.system.**"
-    action: DENY
-}
-
-rule NetworkAdminUser {
-    description: "Grant business network administrators full access to user resources"
-    participant: "org.hyperledger.composer.system.NetworkAdmin"
-    operation: ALL
-    resource: "**"
+rule SchReadUserAsset {
+  	description: ""
+  	participant(p): "hansung.ac.kr.participants.School"
+  	operation: READ
+	resource(r): "hansung.ac.kr.assets.**"
+    condition: (p.getIdentifier() == r.issuingSch.getIdentifier() )
     action: ALLOW
 }
 
-rule NetworkAdminSystem {
-    description: "Grant business network administrators full access to system resources"
-    participant: "org.hyperledger.composer.system.NetworkAdmin"
-    operation: ALL
-    resource: "org.hyperledger.composer.system.**"
-    action: ALLOW
-}
+*/
+
+
+

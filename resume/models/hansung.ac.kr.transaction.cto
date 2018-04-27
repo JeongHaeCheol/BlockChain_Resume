@@ -59,6 +59,7 @@ transaction CreateResumeInfoUser extends TxForUser {
     o String majorActivities optional
     o String socialExperience optional
     o String skillsAndCapabilities optional
+    o Boolean publishOnOff
 }
 
 
@@ -81,6 +82,7 @@ transaction UpdateResumeInfoUser extends TxForUser {
     o AwardDetails awardDetails optional
     o UserInfoInEnt userInfoInEnt optional
     o UserInfoInSch userInfoInSch optional
+    o Boolean publishOnOff
 }
 
 transaction DeleteResumeElement extends TxForUser {

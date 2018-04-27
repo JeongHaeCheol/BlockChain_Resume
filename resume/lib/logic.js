@@ -55,41 +55,53 @@ function updateAsset(type, tx, registry) {
              .then(function (updateTarget) {
 
 
-             if(paramItem.certificateName != null  || paramItem.certificateName != undefined) {
+             if(paramItem.certificateName != null  && paramItem.certificateName != undefined) {
                updateTarget.certificateName = paramItem.certificateName;
 
 
              }
 
-             if(paramItem.certificateScore != null || paramItem.certificateScore != undefined) {
+             if(paramItem.certificateScore != null && paramItem.certificateScore != undefined) {
                updateTarget.certificateScore  = paramItem.certificateScore ;
 
              }
 
-             if(paramItem.issuingOrg != null || paramItem.issuingOrg != undefined) {
+             if(paramItem.issuingOrg != null && paramItem.issuingOrg != undefined) {
                updateTarget.issuingOrg = paramItem.issuingOrg;
 
              }
 
-             if(paramItem.issuingOrgName != null || paramItem.issuingOrgName != undefined) {
-               updateTarget.issuingOrgName = paramItem.issuingOrgName;
+             if(paramItem.organizationName != null && paramItem.organizationName != undefined) {
+               updateTarget.organizationName = paramItem.organizationName;
 
              }
 
-             if(paramItem.dob != null || paramItem.dob != undefined) {
+              if(paramItem.issuingOrgName != null && paramItem.issuingOrgName != undefined) {
+               updateTarget.issuingOrgName = paramItem.issuingOrgName;
+
+             }
+               
+             if(paramItem.dob != null && paramItem.dob != undefined) {
                updateTarget.dob = paramItem.dob;
 
              }
 
-             if(paramItem.expirationDate != null || paramItem.expirationDate != undefined) {
+             if(paramItem.expirationDate != null && paramItem.expirationDate != undefined) {
                updateTarget.expirationDate  = paramItem.expirationDate;
 
              }
 
-             if(paramItem.transactionTime != null ||  paramItem.transactionTime != undefined) {
+             if(paramItem.transactionTime != null &&  paramItem.transactionTime != undefined) {
                updateTarget.transactionTime = paramItem.transactionTime;
 
              }
+               
+             if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
+               updateTarget.publicOnOff = paramItem.publicOnOff;
+
+             }
+               
+        console.log(updateTarget);
                return registry.update(updateTarget)
              }).catch(function (error) {
        			throw new Error(error);
@@ -103,36 +115,46 @@ function updateAsset(type, tx, registry) {
              .then(function (updateTarget) {
 
 
-             if(paramItem.contestName != null  || paramItem.contestName != undefined) {
+             if(paramItem.contestName != null  && paramItem.contestName != undefined) {
                updateTarget.contestName = paramItem.contestName;
 
 
              }
 
-             if(paramItem.issuingOrg != null || paramItem.issuingOrg != undefined) {
+             if(paramItem.issuingOrg != null && paramItem.issuingOrg != undefined) {
                updateTarget.issuingOrg  = paramItem.issuingOrg ;
 
              }
 
-             if(paramItem.dateOfAward != null || paramItem.dateOfAward != undefined) {
+             if(paramItem.dateOfAward != null && paramItem.dateOfAward != undefined) {
                updateTarget.dateOfAward = paramItem.dateOfAward;
 
              }
 
-             if(paramItem.transactionTime != null || paramItem.transactionTime != undefined) {
+             if(paramItem.transactionTime != null && paramItem.transactionTime != undefined) {
                updateTarget.issuingOrgName = paramItem.issuingOrgName;
 
              }
+               
+             if(paramItem.organizationName != null && paramItem.organizationName != undefined) {
+               updateTarget.organizationName = paramItem.organizationName;
 
-             if(paramItem.awardGrade  != null || paramItem.awardGrade  != undefined) {
+             }
+
+             if(paramItem.awardGrade  != null && paramItem.awardGrade  != undefined) {
                updateTarget.dob = paramItem.dob;
 
              }
 
-             if(paramItem.description  != null || paramItem.description  != undefined) {
+             if(paramItem.description  != null && paramItem.description  != undefined) {
                updateTarget.expirationDate  = paramItem.expirationDate;
 
              }
+             if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
+               updateTarget.publicOnOff = paramItem.publicOnOff;
+
+             }
+                console.log(updateTarget);
              return registry.update(updateTarget);
              }).catch(function (error) {
        			throw new Error(error);
@@ -147,37 +169,48 @@ function updateAsset(type, tx, registry) {
 
 
 
-             if(paramItem.issuingEnt != null  || paramItem.issuingEnt != undefined) {
+             if(paramItem.issuingEnt != null  && paramItem.issuingEnt != undefined) {
                updateTarget.issuingEnt = paramItem.issuingEnt;
 
 
              }
+               
+              if(paramItem.enterpriseName != null  && paramItem.enterpriseName != undefined) {
+               updateTarget.enterpriseName = paramItem.enterpriseName;
 
-             if(paramItem.userPosition != null || paramItem.userPosition != undefined) {
+
+             }
+             
+
+             if(paramItem.userPosition != null && paramItem.userPosition != undefined) {
                updateTarget.userPosition  = paramItem.userPosition ;
 
              }
 
-             if(paramItem.performingTask != null || paramItem.performingTask != undefined) {
+             if(paramItem.performingTask != null && paramItem.performingTask != undefined) {
                updateTarget.performingTask = paramItem.performingTask;
 
              }
 
-             if(paramItem.dateOfEmployment  != null || paramItem.dateOfEmployment  != undefined) {
+             if(paramItem.dateOfEmployment  != null && paramItem.dateOfEmployment  != undefined) {
                updateTarget.dateOfEmployment  = paramItem.dateOfEmployment ;
 
              }
 
-             if(paramItem.retirementDate   != null || paramItem.retirementDate   != undefined) {
+             if(paramItem.retirementDate   != null && paramItem.retirementDate   != undefined) {
                updateTarget.retirementDate  = paramItem.retirementDate ;
 
              }
 
-             if(paramItem.transactionTime  != null || paramItem.transactionTime  != undefined) {
+             if(paramItem.transactionTime  != null && paramItem.transactionTime  != undefined) {
                updateTarget.transactionTime  = paramItem.transactionTime;
 
              }
+             if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
+               updateTarget.publicOnOff = paramItem.publicOnOff;
 
+             }
+ console.log(updateTarget);
              return registry.update(updateTarget);
              }).catch(function (error) {
        			throw new Error(error);
@@ -192,42 +225,52 @@ function updateAsset(type, tx, registry) {
 
 
 
-             if(paramItem.issuingSch != null  || paramItem.issuingSch != undefined) {
+             if(paramItem.issuingSch != null  && paramItem.issuingSch != undefined) {
                updateTarget.issuingSch = paramItem.issuingSch;
 
 
              }
 
-             if(paramItem.entranceDate != null || paramItem.entranceDate != undefined) {
+             if(paramItem.entranceDate != null && paramItem.entranceDate != undefined) {
                updateTarget.entranceDate  = paramItem.entranceDate ;
 
              }
+               
+               
+             if(paramItem.schoolName != null  && paramItem.schoolName != undefined) {
+               updateTarget.schoolName = paramItem.schoolName;
 
-             if(paramItem.performingTask != null || paramItem.performingTask != undefined) {
+             }
+
+             if(paramItem.performingTask != null && paramItem.performingTask != undefined) {
                updateTarget.performingTask = paramItem.performingTask;
 
              }
 
-             if(paramItem.graduationDate   != null || paramItem.graduationDate   != undefined) {
+             if(paramItem.graduationDate   != null && paramItem.graduationDate   != undefined) {
                updateTarget.graduationDate   = paramItem.graduationDate  ;
 
              }
 
-             if(paramItem.transactionTime   != null || paramItem.transactionTime   != undefined) {
+             if(paramItem.transactionTime   != null && paramItem.transactionTime   != undefined) {
                updateTarget.transactionTime  = paramItem.transactionTime ;
 
              }
 
-             if(paramItem.majorField   != null || paramItem.majorField   != undefined) {
+             if(paramItem.majorField   != null && paramItem.majorField   != undefined) {
                updateTarget.majorField   = paramItem.majorField ;
 
              }
 
-             if(paramItem.gradeAverage    != null || paramItem.gradeAverage    != undefined) {
+             if(paramItem.gradeAverage    != null && paramItem.gradeAverage    != undefined) {
                updateTarget.gradeAverage    = paramItem.gradeAverage  ;
 
              }
+             if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
+               updateTarget.publicOnOff = paramItem.publicOnOff;
 
+             }
+             console.log(updateTarget);
              return registry.update(updateTarget);
              }).catch(function (error) {
        			throw new Error(error);
@@ -312,92 +355,6 @@ function createAsset(type, tx, me, registry, _targetResumeAsset) {
 
 
 
-
-
-
-/**
- * @param {hansung.ac.kr.transaction.selectUserByCertificateName}  tx  - the member to be processed
- * @transaction
- */
-function selectUserByCertificateName (tx) {
-  var idList = [];
-
-  // 선택된 결과가 많아질경우 이코드는 문제가 있음 수정필요
-  query("selectCertificateByName" , {targetName: tx.certificateName })
-  .then(function (certificateList) {
-     certificateList.forEach(function (certificate) {
-     idList.push(certificate.ownerId);
-     })
-  }).then(function () {
-     idList.forEach(function (id) {
-        query("selectUserById" , {targetId: id })
-        .then(function (userList){
-         console.log(userList); 
-        });
-     })
-  });
-
-}
-
-
-/**
- * @param {hansung.ac.kr.transaction.selectResumeInfoUser}  tx  - the member to be processed
- * @transaction
- */
-function selectResumeInfoUser (tx) {
-  var me = getCurrentParticipant();
-  query("selectResumeInfoUser" , {resumeAssetId: "ResumeAsset#" + me.getIdentifier() })
-  .then(function (resume) {
-  console.log(resume);
-  })
-
-}
-
-/**
- * @param {hansung.ac.kr.transaction.selectMyCertificate}  tx  - the member to be processed
- * @transaction
- */
-function selectMyCertificate (tx) {
-  var me = getCurrentParticipant();
-  var result = query("selectMyCertificate" , {CurrentUserId: me.getIdentifier() });
-  console.log(result);
-}
-
-/**
- * @param {hansung.ac.kr.transaction.selectMyAwardDetails}  tx  - the member to be processed
- * @transaction
- */
-function selectMyAwardDetails (tx) {
-  var me = getCurrentParticipant();
-  var result = query("selectMyAwardDetails" , {CurrentUserId: me.getIdentifier() });
-  console.log(result);
-}
-
-/**
- * @param {hansung.ac.kr.transaction.selectMyUserInfoInEnt}  tx  - the member to be processed
- * @transaction
- */
-function selectMyUserInfoInEnt (tx) {
-  var me = getCurrentParticipant();
-  var result = query("selectMyUserInfoInEnt" , {CurrentUserId: me.getIdentifier() });
-  console.log(result);
-}
-
-/**
- * @param {hansung.ac.kr.transaction.selectMyUserInfoInSch}  tx  - the member to be processed
- * @transaction
- */
-function selectMyUserInfoInSch (tx) {
-  var me = getCurrentParticipant();
-  var result = query("selectMyUserInfoInSch" , {CurrentUserId: me.getIdentifier() });
-  console.log(result);
-}
-
-
-
-
-
-
 /**
  * @param {hansung.ac.kr.transaction.CreateResumeInfoUser}  txCreateResumeInfoUser  - the member to be processed
  * @transaction
@@ -424,11 +381,13 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
        newResumeAsset.majorActivities  = txCreateResumeInfoUser.majorActivities ;
        newResumeAsset.socialExperience  = txCreateResumeInfoUser.socialExperience ;
        newResumeAsset.skillsAndCapabilities  = txCreateResumeInfoUser.skillsAndCapabilities ;
+       newResumeAsset.publishOnOff = txCreateResumeInfoUser.publishOnOff;
 
        newResumeAsset.certificateList   = [] ;
        newResumeAsset.awardList   =  [] ;
        newResumeAsset.userInfoInEnt   =  [] ;
        newResumeAsset.userInfoInSch   =  [] ;
+       
        return allResume.add(newResumeAsset);
    });
 }
@@ -477,7 +436,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
   }).then(function (targetResumeAsset) {
      _targetResumeAsset = targetResumeAsset;
 
-    if( (txCreateResumeElement.certificate != null) || (txCreateResumeElement.certificate    != undefined) ) {
+    if( (txCreateResumeElement.certificate != null) && (txCreateResumeElement.certificate    != undefined) ) {
 
       createAsset( "certificate", txCreateResumeElement, me, _certificateRegistry, _targetResumeAsset);
        var certificateEvent = factory.newEvent(NAMESPACE_EVENT_OR_TRANSACTION, 'SendEvent');
@@ -486,7 +445,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
     }
 
 
-    if( (txCreateResumeElement.awardDetails    != null) || (txCreateResumeElement.awardDetails    != undefined) ) {
+    if( (txCreateResumeElement.awardDetails    != null) && (txCreateResumeElement.awardDetails    != undefined) ) {
 
 
        createAsset( "awardDetails", txCreateResumeElement, me, _awardDetailsRegistry, _targetResumeAsset);
@@ -496,7 +455,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
     }
 
 
-    if( (txCreateResumeElement.userInfoInEnt     != null) || (txCreateResumeElement.userInfoInEnt     != undefined))      {
+    if( (txCreateResumeElement.userInfoInEnt     != null) && (txCreateResumeElement.userInfoInEnt     != undefined))      {
 
 
        createAsset( "userInfoInEnt", txCreateResumeElement, me, _userInfoInEntRegistry, _targetResumeAsset);
@@ -507,7 +466,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
     }
 
 
-    if( (txCreateResumeElement.userInfoInSch      != null) || (txCreateResumeElement.userInfoInSch      != undefined) ) {
+    if( (txCreateResumeElement.userInfoInSch      != null) && (txCreateResumeElement.userInfoInSch      != undefined) ) {
 
        createAsset( "userInfoInSch", txCreateResumeElement, me, _userInfoInSchRegistry, _targetResumeAsset);
         var userInfoInSchEvent = factory.newEvent(NAMESPACE_EVENT_OR_TRANSACTION, 'SendEvent');
@@ -523,6 +482,111 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
    });
 
  }
+
+
+
+/**
+ * @param {hansung.ac.kr.transaction.UpdateResumeInfoUser}  txUpdateResumeInfoUser  - the member to be processed
+ * @transaction
+ */
+ function UpdateResumeInfoUser(txUpdateResumeInfoUser) {
+
+    var me = getCurrentParticipant();
+    var allResume = null;
+    var _targetResumeAsset = null;
+
+    var _certificateRegistry = null;
+    var _awardDetailsRegistry = null;
+    var _userInfoInEntRegistry = null;
+    var _userInfoInSchRegistry = null;
+
+    if(!me) {
+        throw new Error('can not find Participant');
+    }
+
+    if(txUpdateResumeInfoUser.userId == null) {
+        throw new Error('tx userId == null');
+    }
+
+   return getAssetRegistry(ASSET_CERTIFICATE)
+     .then(function (certificateRegisty) {
+      _certificateRegistry = certificateRegisty;
+     return getAssetRegistry(ASSET_AWARD_DETAILS)
+   }).then(function (awardDetailsRegistry) {
+      _awardDetailsRegistry = awardDetailsRegistry;
+     return getAssetRegistry(USER_INFO_BY_ENT)
+   }).then(function (userInfoInEntRegistry) {
+     _userInfoInEntRegistry = userInfoInEntRegistry;
+     return getAssetRegistry(USER_INFO_BY_SCH)
+   }).then(function (userInfoInSchRegistry) {
+     return _userInfoInSchRegistry = userInfoInSchRegistry;
+   }).then(function () {
+    return getAssetRegistry(ASSET_RESUME_INFO_USER)
+   }).then(function (allResumeAssetRegistry) {
+      allResume = allResumeAssetRegistry;
+
+      return allResumeAssetRegistry.get("ResumeAsset#" + me.getIdentifier());
+    }).then(function (targetResumeAsset) {
+
+      _targetResumeAsset = targetResumeAsset;
+
+
+      if(txUpdateResumeInfoUser.dob != null)
+      	targetResumeAsset.dob = txUpdateResumeInfoUser.dob;
+
+
+      if(txUpdateResumeInfoUser.supportField != null)
+      	targetResumeAsset.supportField = txUpdateResumeInfoUser.supportField;
+
+
+      if( (txUpdateResumeInfoUser.salaryRequirement   != null) && (txUpdateResumeInfoUser.salaryRequirement   != undefined) )
+      	targetResumeAsset.salaryRequirement  = txUpdateResumeInfoUser.salaryRequirement;
+
+
+      if( (txUpdateResumeInfoUser.majorActivities    != null) && (txUpdateResumeInfoUser.majorActivities    != undefined) )
+      	targetResumeAsset.majorActivities   = txUpdateResumeInfoUser.majorActivities;
+
+
+     if( (txUpdateResumeInfoUser.socialExperience    != null) && (txUpdateResumeInfoUser.socialExperience    != undefined) )
+      	targetResumeAsset.socialExperience   = txUpdateResumeInfoUser.socialExperience;
+
+
+     if( (txUpdateResumeInfoUser.skillsAndCapabilities    != null) && (txUpdateResumeInfoUser.skillsAndCapabilities    != undefined) )
+      	targetResumeAsset.skillsAndCapabilities   = txUpdateResumeInfoUser.skillsAndCapabilities;
+
+     if( (txUpdateResumeInfoUser.publicOnOff    != null) && (txUpdateResumeInfoUser.publicOnOff    != undefined) )
+      	targetResumeAsset.publicOnOff   = txUpdateResumeInfoUser.publicOnOff;
+
+
+     if( (txUpdateResumeInfoUser.certificate != null) && (txUpdateResumeInfoUser.certificate    != undefined) ) {
+       updateAsset( "certificate", txUpdateResumeInfoUser, _certificateRegistry);
+     }
+
+
+     if( (txUpdateResumeInfoUser.awardDetails    != null) && (txUpdateResumeInfoUser.awardDetails    != undefined) ) {
+        updateAsset( "awardDetails", txUpdateResumeInfoUser, _awardDetailsRegistry);
+     }
+
+
+     if( (txUpdateResumeInfoUser.userInfoInEnt     != null) && (txUpdateResumeInfoUser.userInfoInEnt     != undefined))      {
+        updateAsset( "userInfoInEnt", txUpdateResumeInfoUser, _userInfoInEntRegistry);
+     }
+
+
+     if( (txUpdateResumeInfoUser.userInfoInSch      != null) && (txUpdateResumeInfoUser.userInfoInSch      != undefined) ) {
+        updateAsset( "userInfoInSch", txUpdateResumeInfoUser, _userInfoInSchRegistry);
+     }
+
+    }).then(function () {
+   	   return allResume.update(_targetResumeAsset);
+    });
+}
+
+
+
+
+
+
 
 
 
@@ -657,105 +721,106 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
 
 
 
+
+
+
+
 /**
- * @param {hansung.ac.kr.transaction.UpdateResumeInfoUser}  txUpdateResumeInfoUser  - the member to be processed
+ * @param {hansung.ac.kr.transaction.selectUserByCertificateName}  tx  - the member to be processed
  * @transaction
  */
- function UpdateResumeInfoUser(txUpdateResumeInfoUser) {
+function selectUserByCertificateName (tx) {
+  var idList = [];
 
-    var me = getCurrentParticipant();
-    var allResume = null;
-    var _targetResumeAsset = null;
+  // 선택된 결과가 많아질경우 이코드는 문제가 있음 수정필요
+  query("selectCertificateByName" , {targetName: tx.certificateName })
+  .then(function (certificateList) {
+     certificateList.forEach(function (certificate) {
+     idList.push(certificate.ownerId);
+     })
+  }).then(function () {
+     idList.forEach(function (id) {
+        query("selectUserById" , {targetId: id })
+        .then(function (userList){
+         console.log(userList); 
+        });
+     })
+  });
 
-    var _certificateRegistry = null;
-    var _awardDetailsRegistry = null;
-    var _userInfoInEntRegistry = null;
-    var _userInfoInSchRegistry = null;
-
-    if(!me) {
-        throw new Error('can not find Participant');
-    }
-
-    if(txUpdateResumeInfoUser.userId == null) {
-        throw new Error('tx userId == null');
-    }
-
-   return getAssetRegistry(ASSET_CERTIFICATE)
-     .then(function (certificateRegisty) {
-      _certificateRegistry = certificateRegisty;
-     return getAssetRegistry(ASSET_AWARD_DETAILS)
-   }).then(function (awardDetailsRegistry) {
-      _awardDetailsRegistry = awardDetailsRegistry;
-     return getAssetRegistry(USER_INFO_BY_ENT)
-   }).then(function (userInfoInEntRegistry) {
-     _userInfoInEntRegistry = userInfoInEntRegistry;
-     return getAssetRegistry(USER_INFO_BY_SCH)
-   }).then(function (userInfoInSchRegistry) {
-     return _userInfoInSchRegistry = userInfoInSchRegistry;
-   }).then(function () {
-    return getAssetRegistry(ASSET_RESUME_INFO_USER)
-   }).then(function (allResumeAssetRegistry) {
-      allResume = allResumeAssetRegistry;
-
-      return allResumeAssetRegistry.get("ResumeAsset#" + me.getIdentifier());
-    }).then(function (targetResumeAsset) {
-
-      _targetResumeAsset = targetResumeAsset;
-
-
-      if(txUpdateResumeInfoUser.dob != null)
-      	targetResumeAsset.dob = txUpdateResumeInfoUser.dob;
-
-
-      if(txUpdateResumeInfoUser.supportField != null)
-      	targetResumeAsset.supportField = txUpdateResumeInfoUser.supportField;
-
-
-      if( (txUpdateResumeInfoUser.affiliatedEnt  != null) || (txUpdateResumeInfoUser.affiliatedEnt  != undefined) )
-      	targetResumeAsset.affiliatedEnt = txUpdateResumeInfoUser.affiliatedEnt;
-
-
-      if( (txUpdateResumeInfoUser.salaryRequirement   != null) || (txUpdateResumeInfoUser.salaryRequirement   != undefined) )
-      	targetResumeAsset.salaryRequirement  = txUpdateResumeInfoUser.salaryRequirement;
-
-
-      if( (txUpdateResumeInfoUser.majorActivities    != null) || (txUpdateResumeInfoUser.majorActivities    != undefined) )
-      	targetResumeAsset.majorActivities   = txUpdateResumeInfoUser.majorActivities;
-
-
-     if( (txUpdateResumeInfoUser.socialExperience    != null) || (txUpdateResumeInfoUser.socialExperience    != undefined) )
-      	targetResumeAsset.socialExperience   = txUpdateResumeInfoUser.socialExperience;
-
-
-     if( (txUpdateResumeInfoUser.skillsAndCapabilities    != null) || (txUpdateResumeInfoUser.skillsAndCapabilities    != undefined) )
-      	targetResumeAsset.skillsAndCapabilities   = txUpdateResumeInfoUser.skillsAndCapabilities;
-
-
-
-
-     if( (txUpdateResumeInfoUser.certificate != null) || (txUpdateResumeInfoUser.certificate    != undefined) ) {
-       updateAsset( "certificate", txUpdateResumeInfoUser, _certificateRegistry);
-     }
-
-
-     if( (txUpdateResumeInfoUser.awardDetails    != null) || (txUpdateResumeInfoUser.awardDetails    != undefined) ) {
-        updateAsset( "awardDetails", txUpdateResumeInfoUser, _awardDetailsRegistry);
-     }
-
-
-     if( (txUpdateResumeInfoUser.userInfoInEnt     != null) || (txUpdateResumeInfoUser.userInfoInEnt     != undefined))      {
-        updateAsset( "userInfoInEnt", txUpdateResumeInfoUser, _userInfoInEntRegistry);
-     }
-
-
-     if( (txUpdateResumeInfoUser.userInfoInSch      != null) || (txUpdateResumeInfoUser.userInfoInSch      != undefined) ) {
-        updateAsset( "userInfoInSch", txUpdateResumeInfoUser, _userInfoInSchRegistry);
-     }
-
-    }).then(function () {
-   	   return allResume.update(_targetResumeAsset);
-    });
 }
+
+
+/**
+ * @param {hansung.ac.kr.transaction.selectResumeInfoUser}  tx  - the member to be processed
+ * @transaction
+ */
+function selectResumeInfoUser (tx) {
+  var me = getCurrentParticipant();
+  query("selectResumeInfoUser" , {resumeAssetId: "ResumeAsset#" + me.getIdentifier() })
+  .then(function (resume) {
+  console.log(resume);
+  })
+
+}
+
+/**
+ * @param {hansung.ac.kr.transaction.selectMyCertificate}  tx  - the member to be processed
+ * @transaction
+ */
+function selectMyCertificate (tx) {
+  var me = getCurrentParticipant();
+  var result = query("selectMyCertificate" , {CurrentUserId: me.getIdentifier() });
+  console.log(result);
+}
+
+/**
+ * @param {hansung.ac.kr.transaction.selectMyAwardDetails}  tx  - the member to be processed
+ * @transaction
+ */
+function selectMyAwardDetails (tx) {
+  var me = getCurrentParticipant();
+  var result = query("selectMyAwardDetails" , {CurrentUserId: me.getIdentifier() });
+  console.log(result);
+}
+
+/**
+ * @param {hansung.ac.kr.transaction.selectMyUserInfoInEnt}  tx  - the member to be processed
+ * @transaction
+ */
+function selectMyUserInfoInEnt (tx) {
+  var me = getCurrentParticipant();
+  var result = query("selectMyUserInfoInEnt" , {CurrentUserId: me.getIdentifier() });
+  console.log(result);
+}
+
+/**
+ * @param {hansung.ac.kr.transaction.selectMyUserInfoInSch}  tx  - the member to be processed
+ * @transaction
+ */
+function selectMyUserInfoInSch (tx) {
+  var me = getCurrentParticipant();
+  var result = query("selectMyUserInfoInSch" , {CurrentUserId: me.getIdentifier() });
+  console.log(result);
+}
+
+
+
+
+
+
+
+/* 
+	Holding Functions 
+   
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+*/
+
+
+
+
 
 
 /**
@@ -816,6 +881,14 @@ function addRequestUser(addRequestUser) {
   	else throw "Same Id already exist";
 
 }
+
+
+
+
+
+
+
+
 
 /**
  * @param {hansung.ac.kr.transaction.RevokeRequestUser} revokeRequestUser - the authorize to be processed
