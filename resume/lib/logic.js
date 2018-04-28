@@ -98,7 +98,6 @@ function updateAsset(type, tx, registry) {
                
              if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
                updateTarget.publicOnOff = paramItem.publicOnOff;
-
              }
                
         console.log(updateTarget);
@@ -151,7 +150,7 @@ function updateAsset(type, tx, registry) {
 
              }
              if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
-               updateTarget.publicOnOff = paramItem.publicOnOff;
+               updateTarget.publicOnOff = Boolean(paramItem.publicOnOff);
 
              }
                 console.log(updateTarget);
@@ -207,7 +206,7 @@ function updateAsset(type, tx, registry) {
 
              }
              if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
-               updateTarget.publicOnOff = paramItem.publicOnOff;
+               updateTarget.publicOnOff = Boolean(paramItem.publicOnOff);
 
              }
  console.log(updateTarget);
@@ -267,7 +266,7 @@ function updateAsset(type, tx, registry) {
 
              }
              if(paramItem.publicOnOff != null &&  paramItem.publicOnOff != undefined) {
-               updateTarget.publicOnOff = paramItem.publicOnOff;
+               updateTarget.publicOnOff = Boolean(paramItem.publicOnOff);
 
              }
              console.log(updateTarget);
@@ -381,7 +380,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
        newResumeAsset.majorActivities  = txCreateResumeInfoUser.majorActivities ;
        newResumeAsset.socialExperience  = txCreateResumeInfoUser.socialExperience ;
        newResumeAsset.skillsAndCapabilities  = txCreateResumeInfoUser.skillsAndCapabilities ;
-       newResumeAsset.publishOnOff = txCreateResumeInfoUser.publishOnOff;
+       newResumeAsset.publicOnOff = Boolean(txCreateResumeInfoUser.publicOnOff);
 
        newResumeAsset.certificateList   = [] ;
        newResumeAsset.awardList   =  [] ;
@@ -555,7 +554,7 @@ function CreateResumeInfoUser (txCreateResumeInfoUser) {
       	targetResumeAsset.skillsAndCapabilities   = txUpdateResumeInfoUser.skillsAndCapabilities;
 
      if( (txUpdateResumeInfoUser.publicOnOff    != null) && (txUpdateResumeInfoUser.publicOnOff    != undefined) )
-      	targetResumeAsset.publicOnOff   = txUpdateResumeInfoUser.publicOnOff;
+      	targetResumeAsset.publicOnOff   = Boolean(txUpdateResumeInfoUser.publicOnOff);
 
 
      if( (txUpdateResumeInfoUser.certificate != null) && (txUpdateResumeInfoUser.certificate    != undefined) ) {
