@@ -12,6 +12,7 @@ asset ResumeInfoUser identified by assetId {
     o String majorActivities optional
     o String socialExperience optional
     o String skillsAndCapabilities optional
+    o Boolean publicOnOff
 
     --> Certificate[] certificateList optional
     --> AwardDetails[] awardList optional
@@ -25,12 +26,13 @@ asset Certificate identified by assetId {
     o String ownerId
     o String parentResumeId
     o String certificateName
-    o Integer certificateScore default=0 range=[0,] optional
+    o Integer certificateScore  range=[0,] optional
 	--> Organization issuingOrg
     o String organizationName
     o DateTime dob
     o DateTime expirationDate optional
     o DateTime transactionTime
+    o Boolean publicOnOff
 }
 
 asset AwardDetails identified by assetId {
@@ -44,6 +46,7 @@ asset AwardDetails identified by assetId {
    o DateTime transactionTime
    o String awardGrade optional 
    o String description optional
+   o Boolean publicOnOff 
 }
 
 asset UserInfoInEnt identified by assetId {
@@ -57,6 +60,7 @@ asset UserInfoInEnt identified by assetId {
     o DateTime dateOfEmployment optional
     o DateTime retirementDate optional
     o DateTime transactionTime
+    o Boolean publicOnOff 
 }
 
 asset UserInfoInSch identified by assetId {
@@ -69,7 +73,8 @@ asset UserInfoInSch identified by assetId {
     o DateTime graduationDate optional
     o DateTime transactionTime
     o String majorField optional
-    o Double gradeAverage default=0.0 range=[0.0, 4.5] optional
+    o Double gradeAverage  range=[0.0, 4.5] optional
+    o Boolean publicOnOff 
 }
 
 
